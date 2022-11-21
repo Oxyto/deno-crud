@@ -2,7 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 
 export default function Home() {
   return (
-    <>
+    <html>
       <Head>
         <title>Fresh App</title>
       </Head>
@@ -17,6 +17,6 @@ export default function Home() {
           ./routes/index.tsx file, and refresh.
         </p>
       </div>
-    </>
+    </html>
   );
 }
