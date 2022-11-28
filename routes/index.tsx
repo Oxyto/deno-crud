@@ -6,17 +6,22 @@ export default function Home() {
       <Head>
         <title>Fresh App</title>
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md">
-        <img
-          src="/logo.svg"
-          class="w-32 h-32"
-          alt="the fresh logo: a sliced lemon dripping with juice"
-        />
-        <p class="my-6">
-          Welcome to `fresh`. Try updating this message in the
-          ./routes/index.tsx file, and refresh.
-        </p>
-      </div>
+      <body className="bg-blue-600">
+        <h1 className="text-center text-gray-100 text-4xl mt-16">
+          Learning Quizz (bis)
+        </h1>
+        <QuestionList />
+      </body>
     </html>
   );
 }
+
+function QuestionList() {
+  return (
+    <div>
+      <h1>Voici la liste des questions : </h1>
+    </div>
+  );
+}
+
+function AddQuestion() {}

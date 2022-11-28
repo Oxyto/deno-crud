@@ -3,3 +3,4 @@
 .vscode
 .vim
 deno.lock
+dump.rdb
