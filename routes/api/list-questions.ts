@@ -5,6 +5,6 @@ export const handler: Handlers = {
   async GET(_req, _ctx) {
     const questionsList = await getAllQuestions();
 
-    return new Response(JSON.stringify(questionsList));
+    return Response.json(questionsList);
   },
 };

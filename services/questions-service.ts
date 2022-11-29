@@ -13,8 +13,8 @@ export async function createQuestion(
   );
 }
 
-export async function deleteQuestion(question: string) {
-  await db.del(
+export async function deleteQuestion(question: string): Promise<number> {
+  return await db.del(
     `question:valid:${formatQuestion(question)}`,
     `question:invalid:${formatQuestion(question)}`
   );
@@ -24,7 +24,7 @@ export async function getAllQuestions() {
   const result = await db.keys("question:valid:*");
 
   return result.map((question) => {
-    return (question.match(/:(.*)$/) as string[])[1];
+    return (question.match(/:.*:(.*)$/) as string[])[1];
   });
 }
 
