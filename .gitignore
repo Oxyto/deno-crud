@@ -3,3 +3,5 @@
 .vscode
 .vim
 deno.lock
+dump.rdb
+fresh.gen.ts
