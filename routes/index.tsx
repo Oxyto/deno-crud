@@ -19,7 +19,9 @@ export default function Home() {
 function QuestionList() {
   return (
     <div className="flex">
-      <h1 className="text-gray-100 text-xl mx-8">Voici la liste des questions : </h1>
+      <h1 className="text-gray-100 text-xl mx-8">
+        Voici la liste des questions :
+      </h1>
     </div>
   );
 }
