@@ -13,7 +13,7 @@ export const handler: Handlers = {
       0,
       2,
     );
-    const invalidAnswers = await getInvalidAnswers(question);
+    const invalidAnswers = getShuffleArray(await getInvalidAnswers(question));
     const answers = getShuffleArray(
       validAnswers.concat(...invalidAnswers).slice(0, 4),
     );
