@@ -9,6 +9,7 @@ import * as $2 from "./routes/api/list-questions.ts";
 import * as $3 from "./routes/api/pick-question.ts";
 import * as $4 from "./routes/api/send-answer.ts";
 import * as $5 from "./routes/index.tsx";
+import * as $6 from "./routes/pick.tsx";
 import * as $$0 from "./islands/question-list.tsx";
 
 const manifest = {
@@ -19,6 +20,7 @@ const manifest = {
     "./routes/api/pick-question.ts": $3,
     "./routes/api/send-answer.ts": $4,
     "./routes/index.tsx": $5,
+    "./routes/pick.tsx": $6,
   },
   islands: {
     "./islands/question-list.tsx": $$0,
