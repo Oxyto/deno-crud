@@ -16,7 +16,21 @@ export default function QuestionsAnswers() {
   return (
     <div>
       {questions.map((question) => {
-        return <p>{question.question}</p>;
+        return (
+          <div className="flex-col content-center">
+            <h2 className="text-gray-100 w-96 text-2xl text-center mx-auto">{question.question}</h2>
+            {question.answers.map((answer) => {
+              return (
+                <input
+                  className="text-center w-64 h-8 mx-auto"
+                  type="submit"
+                  value={answer}
+                  onClick={() => console.log(question.question, answer)}
+                />
+              );
+            })}
+          </div>
+        );
       })}
     </div>
   );
