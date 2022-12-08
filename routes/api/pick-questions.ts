@@ -9,26 +9,26 @@ import { getShuffleArray } from "../../utils/shuffle-array.ts";
 export const handler: Handlers = {
   async GET(_req, _ctx) {
     const questions = getShuffleArray(await getAllQuestions()).slice(0, 10);
+    const response = await Promise.all(
+      questions.map(async (question) => {
+        const validAnswers = getShuffleArray(
+          await getValidAnswers(question)
+        ).slice(0, 2);
+        const invalidAnswers = getShuffleArray(
+          await getInvalidAnswers(question)
+        );
+        const answers = getShuffleArray(
+          validAnswers.concat(invalidAnswers).slice(0, 4)
+        );
 
-    return Response.json(
-      await Promise.all(
-        questions.map(async (question) => {
-          const validAnswers = getShuffleArray(
-            await getValidAnswers(question)
-          ).slice(0, 2);
-          const invalidAnswers = getShuffleArray(
-            await getInvalidAnswers(question)
-          );
-          const answers = getShuffleArray(
-            validAnswers.concat(...invalidAnswers).slice(0, 4)
-          );
-
-          return {
-            question: question,
-            answers: answers,
-          };
-        })
-      )
+        return {
+          question: question,
+          answers: answers,
+        };
+      })
     );
+
+    console.log(response);
+    return Response.json(response);
   },
 };

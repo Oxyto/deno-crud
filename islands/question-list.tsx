@@ -14,13 +14,13 @@ export default function QuestionList() {
     []
   );
   return (
-    <div className="flex-col">
-      <h1 className="w-64 bg-gray-900 text-center text-gray-100 text-xl mx-auto mt-8 hover:scale-105 transition-transform transform-gpu">
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="w-64 bg-gray-900 text-center text-gray-100 text-xl mt-8 hover:scale-105 transition-transform transform-gpu">
         Voici la liste des questions :
       </h1>
       {questions.map((question) => {
         return (
-          <p className="w-64 text-center text-lg text-gray-100 mx-auto transition-transform transform-gpu hover:scale-105">
+          <p className="w-64 text-center text-lg text-gray-100 transition-transform transform-gpu hover:scale-105">
             {question}
           </p>
         );

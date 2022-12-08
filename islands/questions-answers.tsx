@@ -17,12 +17,12 @@ export default function QuestionsAnswers() {
     <div>
       {questions.map((question) => {
         return (
-          <div className="flex-col content-center">
-            <h2 className="text-gray-100 w-96 text-2xl text-center mx-auto">{question.question}</h2>
+          <div className="flex flex-col justify-center items-center mt-8 mb-8">
+            <h2 className="text-gray-100 bg-gray-800 w-96 text-2xl text-center">{question.question}</h2>
             {question.answers.map((answer) => {
               return (
                 <input
-                  className="text-center w-64 h-8 mx-auto"
+                  className="text-center w-96 h-8"
                   type="submit"
                   value={answer}
                   onClick={() => console.log(question.question, answer)}
