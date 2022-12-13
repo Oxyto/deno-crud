@@ -47,3 +47,22 @@ export async function getInvalidAnswers(question: string) {
 
   return invalidAnswers;
 }
+
+export async function incrementValidAnswers(question: string) {
+  await db.incr(`question:count:valid:${formatQuestion(question)}`);
+}
+
+export async function incrementInvalidAnswers(question: string) {
+  await db.incr(`question:count:invalid:${formatQuestion(question)}`);
+}
+
+export async function getCountQuestion(question: string) {
+  const validCount = Number(
+    await db.get(`question:count:valid:${formatQuestion(question)}`)
+  );
+  const invalidCount = Number(
+    await db.get(`question:count:invalid:${formatQuestion(question)}`)
+  );
+
+  return `${validCount}/${invalidCount}/${validCount + invalidCount}`;
+}

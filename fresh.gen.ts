@@ -10,8 +10,9 @@ import * as $3 from "./routes/api/pick-questions.ts";
 import * as $4 from "./routes/api/send-answer.ts";
 import * as $5 from "./routes/index.tsx";
 import * as $6 from "./routes/pick.tsx";
-import * as $$0 from "./islands/question-list.tsx";
-import * as $$1 from "./islands/questions-answers.tsx";
+import * as $$0 from "./islands/answers.tsx";
+import * as $$1 from "./islands/question-list.tsx";
+import * as $$2 from "./islands/questions-answers.tsx";
 
 const manifest = {
   routes: {
@@ -24,8 +25,9 @@ const manifest = {
     "./routes/pick.tsx": $6,
   },
   islands: {
-    "./islands/question-list.tsx": $$0,
-    "./islands/questions-answers.tsx": $$1,
+    "./islands/answers.tsx": $$0,
+    "./islands/question-list.tsx": $$1,
+    "./islands/questions-answers.tsx": $$2,
   },
   baseUrl: import.meta.url,
   config,

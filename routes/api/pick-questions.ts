@@ -28,7 +28,6 @@ export const handler: Handlers = {
       })
     );
 
-    console.log(response);
     return Response.json(response);
   },
 };
