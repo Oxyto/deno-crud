@@ -6,6 +6,8 @@ export async function createQuestion(
   validAnswers: string[],
   invalidAnswers: string[]
 ) {
+  if ((await db.keys(`question:valid:${formatQuestion(question)}`)).length > 0)
+    return;
   await db.lpush(`question:valid:${formatQuestion(question)}`, ...validAnswers);
   await db.lpush(
     `question:invalid:${formatQuestion(question)}`,
@@ -16,7 +18,9 @@ export async function createQuestion(
 export async function deleteQuestion(question: string): Promise<number> {
   return await db.del(
     `question:valid:${formatQuestion(question)}`,
-    `question:invalid:${formatQuestion(question)}`
+    `question:invalid:${formatQuestion(question)}`,
+    `question:count:valid:${formatQuestion(question)}`,
+    `question:count:invalid:${formatQuestion(question)}`
   );
 }
 
