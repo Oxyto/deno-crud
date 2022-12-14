@@ -28,6 +28,7 @@ export default function QuestionsAnswers() {
                 <Answer
                   question={question.question}
                   answer={answer}
+                  validAnswersCount={question.validAnswersCount as number}
                   answersCount={answersCount}
                   setAnswersCount={setAnswersCount}
                 />

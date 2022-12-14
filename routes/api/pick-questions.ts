@@ -23,6 +23,7 @@ export const handler: Handlers = {
 
         return {
           question: question,
+          validAnswersCount: validAnswers.length,
           answers: answers,
         };
       })

@@ -4,6 +4,7 @@ import config from "../config/conf.ts";
 interface AnswerProp {
   question: string;
   answer: string;
+  validAnswersCount: number;
   answersCount: Map<string, number>;
   setAnswersCount: (value: Map<string, number>) => void;
 }
@@ -12,10 +13,11 @@ async function sendAnswer(
   setValidate: (value: string) => void,
   setAnswersCount: (value: Map<string, number>) => void,
   answersCount: Map<string, number>,
+  validAnswersCount: number,
   question: string,
   answer: string
 ) {
-  if ((answersCount.get(question) ?? 0) >= 2) return;
+  if ((answersCount.get(question) ?? 0) >= validAnswersCount) return;
 
   const response = await fetch(`${config.URL}/api/send-answer`, {
     method: "POST",
@@ -44,6 +46,7 @@ export default function Answer(props: AnswerProp) {
           setValidate,
           props.setAnswersCount,
           props.answersCount,
+          props.validAnswersCount,
           props.question,
           props.answer
         )
