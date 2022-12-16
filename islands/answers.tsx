@@ -11,26 +11,28 @@ interface AnswerProp {
 
 async function sendAnswer(
   setValidate: (value: string) => void,
-  props: AnswerProp
+  {
+    question,
+    answer,
+    validAnswersCount,
+    answersCount,
+    setAnswersCount,
+  }: AnswerProp
 ) {
-  if ((props.answersCount.get(props.question) ?? 0) >= props.validAnswersCount)
-    return;
+  if ((answersCount.get(question) ?? 0) >= validAnswersCount) return;
 
   const response = await fetch(`${config.URL}/api/send-answer`, {
     method: "POST",
     body: JSON.stringify({
-      question: props.question,
-      answer: props.answer,
+      question: question,
+      answer: answer,
     }),
   });
   const validate = await response.json();
 
   setValidate(validate.valid ? "text-green-500" : "text-red-500");
-  props.answersCount.set(
-    props.question,
-    (props.answersCount.get(props.question) ?? 0) + 1
-  );
-  props.setAnswersCount(props.answersCount);
+  answersCount.set(question, (answersCount.get(question) ?? 0) + 1);
+  setAnswersCount(answersCount);
 }
 
 export default function Answer(props: AnswerProp) {
