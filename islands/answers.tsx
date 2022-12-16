@@ -11,26 +11,26 @@ interface AnswerProp {
 
 async function sendAnswer(
   setValidate: (value: string) => void,
-  setAnswersCount: (value: Map<string, number>) => void,
-  answersCount: Map<string, number>,
-  validAnswersCount: number,
-  question: string,
-  answer: string
+  props: AnswerProp
 ) {
-  if ((answersCount.get(question) ?? 0) >= validAnswersCount) return;
+  if ((props.answersCount.get(props.question) ?? 0) >= props.validAnswersCount)
+    return;
 
   const response = await fetch(`${config.URL}/api/send-answer`, {
     method: "POST",
     body: JSON.stringify({
-      question: question,
-      answer: answer,
+      question: props.question,
+      answer: props.answer,
     }),
   });
   const validate = await response.json();
 
   setValidate(validate.valid ? "text-green-500" : "text-red-500");
-  answersCount.set(question, (answersCount.get(question) ?? 0) + 1);
-  setAnswersCount(answersCount);
+  props.answersCount.set(
+    props.question,
+    (props.answersCount.get(props.question) ?? 0) + 1
+  );
+  props.setAnswersCount(props.answersCount);
 }
 
 export default function Answer(props: AnswerProp) {
@@ -41,16 +41,7 @@ export default function Answer(props: AnswerProp) {
       className={"text-center w-96 h-8 " + validate}
       type="submit"
       value={props.answer}
-      onClick={() =>
-        sendAnswer(
-          setValidate,
-          props.setAnswersCount,
-          props.answersCount,
-          props.validAnswersCount,
-          props.question,
-          props.answer
-        )
-      }
+      onClick={() => sendAnswer(setValidate, props)}
     />
   );
 }
