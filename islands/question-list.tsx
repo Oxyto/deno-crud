@@ -1,8 +1,9 @@
 import { useState, useEffect } from "preact/hooks";
 import config from "../config/conf.ts";
+import { QuestionScore } from "../types/question.ts";
 
 export default function QuestionList() {
-  const [questions, setQuestions] = useState<string[]>([]);
+  const [questions, setQuestions] = useState<QuestionScore[]>([]);
 
   useEffect(
     (async () => {
@@ -15,14 +16,15 @@ export default function QuestionList() {
   );
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="w-64 bg-gray-900 text-center text-gray-100 text-xl mt-8 hover:scale-105 transition-transform transform-gpu">
+      <h1 className="w-64 bg-gray-900 text-center text-gray-100 text-xl mt-8">
         Voici la liste des questions :
       </h1>
       {questions.map((question) => {
         return (
-          <p className="w-64 text-center text-lg text-gray-100 transition-transform transform-gpu hover:scale-105">
-            {question}
-          </p>
+          <div className="w-64 text-center text-lg text-gray-100">
+            <p>{question.question}</p>
+            <p>({question.score}%)</p>
+          </div>
         );
       })}
     </div>

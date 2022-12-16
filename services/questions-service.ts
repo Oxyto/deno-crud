@@ -68,5 +68,5 @@ export async function getCountQuestion(question: string) {
     await db.get(`question:count:invalid:${formatQuestion(question)}`)
   );
 
-  return `${validCount}/${invalidCount}/${validCount + invalidCount}`;
+  return [validCount, invalidCount];
 }

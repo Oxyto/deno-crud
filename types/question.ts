@@ -3,3 +3,8 @@ export interface Question {
   validAnswersCount?: number;
   answers: string[];
 }
+
+export interface QuestionScore {
+  question: string;
+  score: number;
+}

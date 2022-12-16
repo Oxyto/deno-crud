@@ -11,8 +11,8 @@ export default function Home() {
         <h1 className="leading-relaxed mx-auto w-96 h-16 bg-gray-900 text-center text-gray-100 text-4xl mt-16">
           Learning Quizz (bis)
         </h1>
-        <a href="/pick">
-          <p className="mx-auto w-96 bg-black text-gray-100 text-center">
+        <a href="/pick" className="mx-auto flex w-96">
+          <p className="mx-auto w-96 bg-black text-gray-100 text-center hover:scale-105 transition-transform transform-gpu">
             You can pick random questions here to answer
           </p>
         </a>
