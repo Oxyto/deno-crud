@@ -10,14 +10,14 @@ interface AnswerProp {
 }
 
 async function sendAnswer(
-  setValidate: (value: string) => void,
+  setValid: (value: string) => void,
   {
     question,
     answer,
     validAnswersCount,
     answersCount,
     setAnswersCount,
-  }: AnswerProp
+  }: AnswerProp,
 ) {
   if ((answersCount.get(question) ?? 0) >= validAnswersCount) return;
 
@@ -28,22 +28,22 @@ async function sendAnswer(
       answer: answer,
     }),
   });
-  const validate = await response.json();
+  const valid = await response.json();
 
-  setValidate(validate.valid ? "text-green-500" : "text-red-500");
+  setValid(valid.valid ? "text-green-500" : "text-red-500");
   answersCount.set(question, (answersCount.get(question) ?? 0) + 1);
   setAnswersCount(answersCount);
 }
 
 export default function Answer(props: AnswerProp) {
-  const [validate, setValidate] = useState<string>();
+  const [valid, setValid] = useState<string>();
 
   return (
     <input
-      className={"text-center w-96 h-8 " + validate}
+      className={"text-center w-96 h-8 " + valid}
       type="submit"
       value={props.answer}
-      onClick={() => sendAnswer(setValidate, props)}
+      onClick={() => sendAnswer(setValid, props)}
     />
   );
 }

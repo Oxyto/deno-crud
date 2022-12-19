@@ -14,10 +14,10 @@ export const handler: Handlers = {
         return {
           question: question,
           score: Math.floor(
-            (validScore / ((validScore + invalidScore) || 1)) * 100
+            (validScore / ((validScore + invalidScore) || 1)) * 100,
           ),
         };
-      })
+      }),
     );
 
     return Response.json(await result);

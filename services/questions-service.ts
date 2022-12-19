@@ -4,14 +4,17 @@ import { formatQuestion } from "../utils/format-question.ts";
 export async function createQuestion(
   question: string,
   validAnswers: string[],
-  invalidAnswers: string[]
+  invalidAnswers: string[],
 ) {
-  if ((await db.keys(`question:valid:${formatQuestion(question)}`)).length > 0)
+  if (
+    (await db.keys(`question:valid:${formatQuestion(question)}`)).length > 0
+  ) {
     return;
+  }
   await db.lpush(`question:valid:${formatQuestion(question)}`, ...validAnswers);
   await db.lpush(
     `question:invalid:${formatQuestion(question)}`,
-    ...invalidAnswers
+    ...invalidAnswers,
   );
 }
 
@@ -20,7 +23,7 @@ export async function deleteQuestion(question: string): Promise<number> {
     `question:valid:${formatQuestion(question)}`,
     `question:invalid:${formatQuestion(question)}`,
     `question:count:valid:${formatQuestion(question)}`,
-    `question:count:invalid:${formatQuestion(question)}`
+    `question:count:invalid:${formatQuestion(question)}`,
   );
 }
 
@@ -36,7 +39,7 @@ export async function getValidAnswers(question: string) {
   const validAnswers = await db.lrange(
     `question:valid:${formatQuestion(question)}`,
     0,
-    -1
+    -1,
   );
 
   return validAnswers;
@@ -46,7 +49,7 @@ export async function getInvalidAnswers(question: string) {
   const invalidAnswers = await db.lrange(
     `question:invalid:${formatQuestion(question)}`,
     0,
-    -1
+    -1,
   );
 
   return invalidAnswers;
@@ -62,10 +65,10 @@ export async function incrementInvalidAnswers(question: string) {
 
 export async function getCountQuestion(question: string) {
   const validCount = Number(
-    await db.get(`question:count:valid:${formatQuestion(question)}`)
+    await db.get(`question:count:valid:${formatQuestion(question)}`),
   );
   const invalidCount = Number(
-    await db.get(`question:count:invalid:${formatQuestion(question)}`)
+    await db.get(`question:count:invalid:${formatQuestion(question)}`),
   );
 
   return [validCount, invalidCount];

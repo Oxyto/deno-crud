@@ -3,8 +3,11 @@ import {
   getInvalidAnswers,
   getValidAnswers,
 } from "../../services/questions-service.ts";
-import { incrementValidAnswers, incrementInvalidAnswers } from "../../services/questions-service.ts"
- 
+import {
+  incrementInvalidAnswers,
+  incrementValidAnswers,
+} from "../../services/questions-service.ts";
+
 export const handler: Handlers = {
   async POST(req, _ctx) {
     const { question, answer } = await req.json();
@@ -12,11 +15,11 @@ export const handler: Handlers = {
     const invalidAnswers = await getInvalidAnswers(question);
 
     if (validAnswers.includes(answer)) {
-      await incrementValidAnswers(question)
+      await incrementValidAnswers(question);
       return Response.json({ valid: true });
     }
     if (invalidAnswers.includes(answer)) {
-      await incrementInvalidAnswers(question)
+      await incrementInvalidAnswers(question);
       return Response.json({ valid: false });
     }
     return new Response("ERR: Not an answer", { status: 400 });
