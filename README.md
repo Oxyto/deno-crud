@@ -9,5 +9,6 @@ For using `deno` on your machine, you can easily use _Homebrew_ on your Mac:
 
 `brew install deno`
 
-In order to run the project, you will need `deno` installed on your machine.
-Then, you just need to run `deno task start`.
+Then, you will need to have Docker hub on your Mac for running the app.
+
+To start the project, run `docker-compose up`
