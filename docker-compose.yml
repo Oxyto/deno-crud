@@ -1,0 +1,16 @@
+version: "3"
+services:
+  server:
+    build: "."
+    image: "server"
+    ports:
+      - "80:80"
+    depends_on:
+      - "db"
+    links:
+      - "db:database"
+  db:
+    restart: "on-failure"
+    image: "redis"
+    expose:
+      - 6379
