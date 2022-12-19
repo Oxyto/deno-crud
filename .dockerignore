@@ -2,3 +2,4 @@ README.md
 deno.lock
 docker-compose.yml
 dump.rdb
+.env.local
