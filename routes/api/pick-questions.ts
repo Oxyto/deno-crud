@@ -12,13 +12,13 @@ export const handler: Handlers = {
     const response = await Promise.all(
       questions.map(async (question) => {
         const validAnswers = getShuffleArray(
-          await getValidAnswers(question)
+          await getValidAnswers(question),
         ).slice(0, 2);
         const invalidAnswers = getShuffleArray(
-          await getInvalidAnswers(question)
+          await getInvalidAnswers(question),
         );
         const answers = getShuffleArray(
-          validAnswers.concat(invalidAnswers).slice(0, 4)
+          validAnswers.concat(invalidAnswers).slice(0, 4),
         );
 
         return {
@@ -26,7 +26,7 @@ export const handler: Handlers = {
           validAnswersCount: validAnswers.length,
           answers: answers,
         };
-      })
+      }),
     );
 
     return Response.json(response);

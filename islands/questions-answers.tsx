@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import config from "../config/conf.ts";
 import { Question } from "../types/question.ts";
 import Answer from "./answers.tsx";
@@ -13,7 +13,7 @@ export default function QuestionsAnswers() {
 
       setQuestions(await response.json());
     }) as () => void,
-    []
+    [],
   );
   return (
     <div>
@@ -26,6 +26,7 @@ export default function QuestionsAnswers() {
             {question.answers.map((answer) => {
               return (
                 <Answer
+                  key={question.question}
                   question={question.question}
                   answer={answer}
                   validAnswersCount={question.validAnswersCount as number}

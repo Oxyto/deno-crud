@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import config from "../config/conf.ts";
 import { QuestionScore } from "../types/question.ts";
 
@@ -12,7 +12,7 @@ export default function QuestionList() {
 
       setQuestions(list);
     }) as () => void,
-    []
+    [],
   );
   return (
     <div className="flex flex-col justify-center items-center">
@@ -21,7 +21,10 @@ export default function QuestionList() {
       </h1>
       {questions.map((question) => {
         return (
-          <div className="w-64 text-center text-lg text-gray-100">
+          <div
+            key={question.question}
+            className="w-64 text-center text-lg text-gray-100"
+          >
             <p>{question.question}</p>
             <p>({question.score}%)</p>
           </div>
