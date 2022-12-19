@@ -9,6 +9,6 @@
     "redis": "https://deno.land/x/redis@v0.27.4/mod.ts",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
-    "uuid": "https://deno.land/std/uuid/mod.ts"
+    "dotenv": "https://deno.land/x/dotenv@v3.2.0/load.ts"
   }
 }

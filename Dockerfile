@@ -1,6 +1,6 @@
 FROM denoland/deno:alpine AS server
 
-EXPOSE 80
+EXPOSE ${DB_PORT}
 
 WORKDIR /app
 
